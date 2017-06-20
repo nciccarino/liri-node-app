@@ -7,3 +7,8 @@ exports.twitterKeys = {
   access_token_key: '876581687836237824-F3qRHCQUAXZj6XtN71GqNglapmNRzXd',
   access_token_secret: 'Uw4ap1RLTUm9NTHIvtPBVRfYbkxOaItXBEbU5kTkMyuiR'
 }; 
+
+exports.spotifyKeys = {
+	id: "9ac7ee6a7e224959b0be3ec3eb83dabd",
+	secret: "9638f3f0e0464c21aaa1969b3db4938f"
+}; 
