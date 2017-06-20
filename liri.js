@@ -92,24 +92,98 @@ function spotify() {
 				return console.log("Error Occurred: " + err); 
 			}
 
-			console.log("Artist(s): " + data.tracks.items[0].album.artists[0].name); 
+			console.log("Artist(s): " + data.tracks.items[0].artists[0].name); 
 			console.log("Song's Name: " + data.tracks.items[0].name); 
 			console.log("Preview Spotify Link: " + data.tracks.items[0].preview_url); 
 			console.log("Album: " + data.tracks.items[0].album.name); 
+			console.log("DEFAULT: NO INPUT"); 
+
+			fs.appendFile("log.txt", "\n" + "Artist(s): " + data.tracks.items[0].artists[0].name + "\n", function(err) {
+				if(err) {
+					console.log(err); 
+				}
+			})
+
+			fs.appendFile("log.txt", "\n" + "Song's Name: " + data.tracks.items[0].name + "\n", function(err) {
+				if(err) {
+					console.log(err); 
+				}
+			})
+
+			fs.appendFile("log.txt", "\n" + "Preview Spotify Link: " + data.tracks.items[0].preview_url + "\n", function(err) {
+				if(err) {
+					console.log(err); 
+				}
+			})
+
+			fs.appendFile("log.txt", "\n" + "Album: " + data.tracks.items[0].album.name + "\n", function(err) {
+				if(err) {
+					console.log(err); 
+				}
+			})
+
+			fs.appendFile("log.txt", "\n" + "DEFAULT: NO INPUT" + "\n", function(err) {
+				if(err) {
+					console.log(err); 
+				}
+			})
 			
 		}) 
 
 	}
 
-	// else {
-	// 	client.search({ type: "track", query: argv}, function(err, data) {
-	// 		for (var i = 3; i < argv.length; i++) {
-	// 			if (i >= 3 && i < argv.length) {
+	else {
+		client.search({ type: "track", query: argv}, function(err, data) {
+			if (err) {
+				return console.log("Error Occurred: " + err);
+			}else{
 
-	// 			}
-	// 		}
-	// 	})
-	// }
+				for (var key in data.tracks.items) {
+
+					if (data.tracks.items[key].name == argv) {
+						console.log("Artist(s): " + data.tracks.items[key].artists[key].name); 
+						console.log("Song's Name: " + data.tracks.items[key].name); 
+						console.log("Preview Spotify Link: " + data.tracks.items[key].preview_url); 
+						console.log("Album: " + data.tracks.items[key].album.name); 
+
+						fs.appendFile("log.txt", "\n" + data.tracks.items[key].artists[key].name + "\n", function(err) {
+							if(err) {
+								console.log(err); 
+							}
+						})
+
+						fs.appendFile("log.txt", "\n" + "Artist(s): " + data.tracks.items[key].artist[key].name + "\n", function(err) {
+							if(err) {
+								console.log(err); 
+							}
+						})
+
+						fs.appendFile("log.txt", "\n" + "Song's Name: " + data.tracks.items[key].name + "\n", function(err) {
+							if(err) {
+								console.log(err); 
+							}
+						})
+
+						fs.appendFile("log.txt", "\n" + "Preview Spotify Link: " + data.tracks.items[key].preview_url + "\n", function(err) {
+							if(err) {
+								console.log(err); 
+							}
+						})
+
+						fs.appendFile("log.txt", "\n" + "Album: " + data.tracks.items[key].album.name + "\n", function(err) {
+							if(err) {
+								console.log(err); 
+							}
+						})
+
+					}
+
+				}
+
+			}
+
+		})
+	}
 
 };
 
