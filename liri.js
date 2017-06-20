@@ -24,35 +24,32 @@ switch (action) {
 		break; 
 };
 
-// //functon to log commands
-// function log() {
-// 	fs.appendFile(log.txt, "\n" + action + "\n", function(err) {
-// 		// If an error was experienced we say it.
-//     	if (err) {
-//     		console.log(err);
-//   		}
+//functon to log commands
+function log() {
+	fs.appendFile("log.txt", "\n" + action + "\n", function(err) {
+		// If an error was experienced we say it.
+    	if (err) {
+    		console.log("Error");
+  		}
 
-//   		// If no error is experienced, we'll log the phrase "Content Added" to our node console.
-//   		else {
-//     		console.log("Content Added!");
-//   		}
-// 	})
-// }; 
+  		// If no error is experienced, we'll log the phrase "Content Added" to our node console.
+  		else {
+    		console.log("Content Added!");
+    		console.log("-----------------------------");
+  		}
+	})
+}; 
 
 
 //node liri.js "my-tweets"
 
 function twitter() {
-	//log(); 
+	log(); 
 
 	var fs = require("fs"); 
 	var keys = require("./keys.js"); 
 	
 	var client = new Twitter(keys.twitterKeys); 
-
-	// client.get('search/tweets', {q: 'node.js'}, function(error, tweets, response) {
-	//    console.log(tweets);
-	// });
 
 	var params = {screen_name: "nciccarino"};
 	client.get("statuses/user_timeline", params, function(error, tweets, responses) {
@@ -61,6 +58,16 @@ function twitter() {
 				console.log(tweets[i].text); 
 				console.log(tweets[i].created_at); 
 				console.log("-----------------------------");
+				fs.appendFile("log.txt", "\n" + tweets[i].text + "\n", function(err) {
+					if(err) {
+						console.log("Error"); 
+					}
+				})
+				fs.appendFile("log.txt", "\n" + tweets[i].created_at + "\n", function(err) {
+					if(err) {
+						console.log("Error"); 
+					}
+				})
 			}
 		}
 	})
