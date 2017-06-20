@@ -87,7 +87,7 @@ function spotify() {
 	var argv = process.argv[3]; 
 
 	if (argv == undefined) {
-		client.search({ type: "track", query: "All the Small Things" }, function(err, data) {
+		client.search({ type: "track", query: "The Sign Ace of Base" }, function(err, data) {
 			if (err) {
 				return console.log("Error Occurred: " + err); 
 			}
@@ -189,5 +189,132 @@ function spotify() {
 
 //node liri.js "movie-this" <"movie name here">
 function omdb() {
+	//log();
 
-};
+	var argv = process.argv[3]; 
+
+	var def = "Mr. Nobody";  
+
+	if (argv == undefined) {
+
+	  	request("http://www.omdbapi.com/?t=" + def + "&y=&plot=short&apikey=40e9cece", function(error, response, body) {
+
+			if (!error && response.statusCode === 200) {
+				console.log("Title: " + JSON.parse(body).Title);
+		  		console.log("Year: " + JSON.parse(body).Year); 
+			    console.log("The movie's IMDB rating is: " + JSON.parse(body).imdbRating);
+			    console.log("Country of Origin: " + JSON.parse(body).Country); 
+			    console.log("Language: " + JSON.parse(body).Language); 
+			    console.log("Plot Summary: " + JSON.parse(body).Plot); 
+			    console.log("Actors: " + JSON.parse(body).Actors); 
+			    //console.log("Rotten Tomatoes URL: https://www.rottentomatoes.com/m/" + argv);
+
+			    fs.appendFile("log.txt", "\n" + "Title: " + JSON.parse(body).Title + "\n", function(err) {
+					if(err) {
+						console.log(err); 
+					}
+				})
+
+				fs.appendFile("log.txt", "\n" + "Year: " + JSON.parse(body).Year + "\n", function(err) {
+					if(err) {
+						console.log(err); 
+					}
+				})
+
+				fs.appendFile("log.txt", "\n" + "The movie's IMDB rating is: " + JSON.parse(body).imdbRating + "\n", function(err) {
+					if(err) {
+						console.log(err); 
+					}
+				})
+
+				fs.appendFile("log.txt", "\n" + "Country of Origin: " + JSON.parse(body).Country + "\n", function(err) {
+					if(err) {
+						console.log(err); 
+					}
+				})
+
+				fs.appendFile("log.txt", "\n" + "Language: " + JSON.parse(body).Language + "\n", function(err) {
+					if(err) {
+						console.log(err); 
+					}
+				})
+
+				fs.appendFile("log.txt", "\n" + "Plot Summary: " + JSON.parse(body).Plot + "\n", function(err) {
+					if(err) {
+						console.log(err); 
+					}
+				})
+
+				fs.appendFile("log.txt", "\n" + "Actors: " + JSON.parse(body).Actors + "\n", function(err) {
+					if(err) {
+						console.log(err); 
+					}
+				})
+
+			}
+
+		});
+
+	}else{
+
+		request("http://www.omdbapi.com/?t=" + argv + "&y=&plot=short&apikey=40e9cece", function(error, response, body) {
+
+		  	if (!error && response.statusCode === 200) {
+		  		console.log("Title: " + JSON.parse(body).Title);
+		  		console.log("Year: " + JSON.parse(body).Year); 
+			    console.log("The movie's IMDB rating is: " + JSON.parse(body).imdbRating);
+			    console.log("Country of Origin: " + JSON.parse(body).Country); 
+			    console.log("Language: " + JSON.parse(body).Language); 
+			    console.log("Plot Summary: " + JSON.parse(body).Plot); 
+			    console.log("Actors: " + JSON.parse(body).Actors); 
+			    //console.log("Rotten Tomatoes URL: https://www.rottentomatoes.com/m/" + argv); 
+
+			   	fs.appendFile("log.txt", "\n" + "Title: " + JSON.parse(body).Title + "\n", function(err) {
+					if(err) {
+						console.log(err); 
+					}
+				})
+
+				fs.appendFile("log.txt", "\n" + "Year: " + JSON.parse(body).Year + "\n", function(err) {
+					if(err) {
+						console.log(err); 
+					}
+				})
+
+				fs.appendFile("log.txt", "\n" + "The movie's IMDB rating is: " + JSON.parse(body).imdbRating + "\n", function(err) {
+					if(err) {
+						console.log(err); 
+					}
+				})
+
+				fs.appendFile("log.txt", "\n" + "Country of Origin: " + JSON.parse(body).Country + "\n", function(err) {
+					if(err) {
+						console.log(err); 
+					}
+				})
+
+				fs.appendFile("log.txt", "\n" + "Language: " + JSON.parse(body).Language + "\n", function(err) {
+					if(err) {
+						console.log(err); 
+					}
+				})
+
+				fs.appendFile("log.txt", "\n" + "Plot Summary: " + JSON.parse(body).Plot + "\n", function(err) {
+					if(err) {
+						console.log(err); 
+					}
+				})
+
+				fs.appendFile("log.txt", "\n" + "Actors: " + JSON.parse(body).Actors + "\n", function(err) {
+					if(err) {
+						console.log(err); 
+					}
+				})
+
+			}
+
+		}); 
+
+	}
+
+}; //function 
