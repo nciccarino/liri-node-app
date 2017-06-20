@@ -318,3 +318,22 @@ function omdb() {
 	}
 
 }; //function 
+
+//node liri.js do-what-it-says
+function doWhatItSays() {
+
+	var argv = process.argv[3]; 
+
+	fs.readFile("random.txt", "utf8", function(error, data) {
+
+		if(error) {
+			return console.log("Error: " + error); 
+		}
+
+		var dataArr = data.split(", "); 
+
+		spotify(dataArr[1]); //can't figure out how to set it to process.argv[3]
+
+	})
+
+}; //function 
